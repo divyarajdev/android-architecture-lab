@@ -5,7 +5,7 @@ access, offline-capable data flow, testing, CI validation, and release engineeri
 
 ## Current Status
 
-M1 — Foundation is in progress.
+M1 - Foundation is in progress.
 
 ## Repository Scope
 
@@ -53,14 +53,14 @@ production API contracts, or proprietary implementation details.
 
 ## Milestone Roadmap
 
-| Milestone                         | Scope                                                                        | Target     |
-|-----------------------------------|------------------------------------------------------------------------------|------------|
-| M1 — Foundation                   | Build tooling, repository governance, CI, Dependabot, ADR baseline           | 2026-06-07 |
-| M2 — Core Architecture            | Module boundaries, domain contracts, use cases, architecture decisions       | 2026-06-14 |
-| M3 — Data Stack                   | Repository implementation, local cache, remote source, cache-first data flow | 2026-06-21 |
-| M4 — Compose Feature Flow         | Dashboard, detail, settings, lifecycle-aware UI state, user actions          | 2026-06-28 |
-| M5 — Reliability And Offline      | Offline state, stale data, retry behavior, failure handling                  | 2026-07-05 |
-| M6 — Testing And Portfolio Polish | Test coverage, documentation, screenshots, release readiness                 | 2026-07-12 |
+| Phase                  | Focus                                                   | Due        |
+|------------------------|---------------------------------------------------------|------------|
+| M1 - Foundation        | Build tooling, governance, CI, Dependabot, ADR baseline | 2026-06-07 |
+| M2 - Core Architecture | Module boundaries, domain contracts, use cases          | 2026-06-14 |
+| M3 - Data Stack        | Repository implementation, local cache, remote source   | 2026-06-21 |
+| M4 - Compose Flow      | Dashboard, detail, settings, lifecycle-aware UI state   | 2026-06-28 |
+| M5 - Reliability       | Offline state, stale data, retry, failure handling      | 2026-07-05 |
+| M6 - Portfolio Ready   | Tests, documentation, screenshots, release readiness    | 2026-07-12 |
 
 ## License
 
