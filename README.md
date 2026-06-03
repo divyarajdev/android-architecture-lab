@@ -8,8 +8,11 @@ dependency governance, CI validation, ADR tracking, and milestone-based architec
 M1 - Foundation is complete: build tooling, repository governance, CI validation, Dependabot,
 and ADR tracking are in place.
 
-M2 - Core Architecture is next: module boundaries, domain contracts, repository interfaces, and
-use-case ownership.
+M2 - Core Architecture is complete: framework-independent core modules, domain contracts,
+repository interfaces, use cases, architecture boundary tests, and ADR documentation are in place.
+
+M3 - Data Stack is planned: repository implementation, local cache, remote source, and data-layer
+boundary enforcement.
 
 ## Repository Scope
 
@@ -97,7 +100,7 @@ cd android-architecture-lab
 | Phase                             | Focus                                                   | Due        |
 |-----------------------------------|---------------------------------------------------------|------------|
 | M1 - Foundation                   | Build tooling, governance, CI, Dependabot, ADR baseline | 2026-06-07 |
-| M2 - Core Architecture            | Module boundaries, domain contracts, use cases          | 2026-06-14 |
+| M2 - Core Architecture            | Core modules, domain contracts, use cases               | 2026-06-14 |
 | M3 - Data Stack                   | Repository implementation, local cache, remote source   | 2026-06-21 |
 | M4 - Compose Feature Flow         | Dashboard, detail, settings, lifecycle-aware UI state   | 2026-06-28 |
 | M5 - Reliability And Offline      | Offline state, stale data, retry, failure handling      | 2026-07-05 |
