@@ -1,0 +1,42 @@
+name: Android CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validation:
+    name: Build and static validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Gradle clean
+        run: ./gradlew clean
+
+      - name: Spotless check
+        run: ./gradlew spotlessCheck
+
+      - name: Assemble debug
+        run: ./gradlew assembleDebug
+
+      - name: Unit tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Android lint
+        run: ./gradlew lintDebug

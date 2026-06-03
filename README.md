@@ -1,7 +1,7 @@
 # android-architecture-lab
 
-Android reference project for Kotlin, Jetpack Compose, modular architecture, repository-backed data
-access, offline-capable data flow, testing, CI validation, and release engineering.
+Android reference project for a reproducible Kotlin and Jetpack Compose foundation, centralized
+dependency governance, CI validation, ADR tracking, and milestone-based architecture delivery.
 
 ## Current Status
 
@@ -14,18 +14,47 @@ This repository uses a fictional Release Readiness Lab domain.
 It contains no company code, client names, private metrics, internal screenshots, secrets,
 production API contracts, or proprietary implementation details.
 
+Repository content must remain limited to public portfolio work, fictional data, and reproducible
+Android implementation examples.
+
+## Requirements
+
+- Android Studio stable release with Android Gradle Plugin 8.13.x support
+- JDK 17 toolchain
+- Android SDK 36 installed
+- Gradle wrapper from this repository
+
+## Setup
+
+```bash
+git clone git@github-divyarajdev:divyarajdev/android-architecture-lab.git
+cd android-architecture-lab
+./gradlew assembleDebug
+```
+
 ## Engineering Focus
 
 - Reproducible Android build foundation
 - Java 17 toolchain
-- Latest stable Kotlin
+- Android Gradle Plugin-compatible Kotlin
 - Centralized dependency management with Gradle Version Catalog
+- Centralized app identity and version metadata with Gradle properties
 - Formatting enforcement with Spotless and ktlint
-- GitHub Actions validation
+- GitHub Actions validation workflow
 - Dependabot for Gradle and GitHub Actions
 - Architecture decision tracking with ADRs
 - Security, contribution, and release governance
 - Milestone-based release traceability
+
+## Repository Structure
+
+| Path              | Responsibility                                                                        |
+|-------------------|---------------------------------------------------------------------------------------|
+| `.github/`        | GitHub Actions, Dependabot, CODEOWNERS, issue form, and pull request template         |
+| `app/`            | Minimal Android application module for M1 build validation                            |
+| `docs/adr/`       | Architecture Decision Records for build, module, data, testing, and release decisions |
+| `gradle/`         | Version Catalog and Gradle wrapper configuration                                      |
+| Root Gradle files | Repository-level build configuration, formatting, and Android project settings        |
 
 ## Planned Architecture Direction
 
@@ -41,27 +70,35 @@ production API contracts, or proprietary implementation details.
 - Cache-first data flow for offline and stale-data handling
 - Unit, UI, lint, and CI checks used as quality gates
 
-## Validation
+## Quality Gates
 
-```bash
-./gradlew clean
-./gradlew spotlessCheck
-./gradlew assembleDebug
-./gradlew testDebugUnitTest
-./gradlew lintDebug
-```
+| Check             | Command                       |
+|-------------------|-------------------------------|
+| Clean build state | `./gradlew clean`             |
+| Formatting        | `./gradlew spotlessCheck`     |
+| Debug build       | `./gradlew assembleDebug`     |
+| Unit tests        | `./gradlew testDebugUnitTest` |
+| Android lint      | `./gradlew lintDebug`         |
+
+## Project Governance
+
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Changelog](CHANGELOG.md)
+- [Architecture decisions](docs/adr/README.md)
 
 ## Milestone Roadmap
 
-| Phase                  | Focus                                                   | Due        |
-|------------------------|---------------------------------------------------------|------------|
-| M1 - Foundation        | Build tooling, governance, CI, Dependabot, ADR baseline | 2026-06-07 |
-| M2 - Core Architecture | Module boundaries, domain contracts, use cases          | 2026-06-14 |
-| M3 - Data Stack        | Repository implementation, local cache, remote source   | 2026-06-21 |
-| M4 - Compose Flow      | Dashboard, detail, settings, lifecycle-aware UI state   | 2026-06-28 |
-| M5 - Reliability       | Offline state, stale data, retry, failure handling      | 2026-07-05 |
-| M6 - Portfolio Ready   | Tests, documentation, screenshots, release readiness    | 2026-07-12 |
+| Phase                             | Focus                                                   | Due        |
+|-----------------------------------|---------------------------------------------------------|------------|
+| M1 - Foundation                   | Build tooling, governance, CI, Dependabot, ADR baseline | 2026-06-07 |
+| M2 - Core Architecture            | Module boundaries, domain contracts, use cases          | 2026-06-14 |
+| M3 - Data Stack                   | Repository implementation, local cache, remote source   | 2026-06-21 |
+| M4 - Compose Feature Flow         | Dashboard, detail, settings, lifecycle-aware UI state   | 2026-06-28 |
+| M5 - Reliability And Offline      | Offline state, stale data, retry, failure handling      | 2026-07-05 |
+| M6 - Testing And Portfolio Polish | Tests, documentation, screenshots, release readiness    | 2026-07-12 |
 
 ## License
 
-MIT
+[MIT](LICENSE)
