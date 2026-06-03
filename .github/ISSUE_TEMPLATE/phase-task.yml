@@ -1,0 +1,223 @@
+name: Android Milestone Task
+description: Create a milestone-scoped Android architecture work item.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🧾 Issue
+
+        Use this form for milestone-scoped Android architecture work.
+
+        Issue title format: `<type>(<scope>): <short description>`
+        Allowed types: `docs`, `feat`, `fix`, `refactor`, `chore`, `test`
+        Allowed labels: `documentation`, `bug`, `duplicate`, `enhancement`, `good first issue`, `help wanted`, `invalid`, `question`, `wontfix`
+        Branch format: `<type>/m<#>-<short-slug>`
+        Commit format: `<type>(<scope>): <short description>`
+
+        Milestone reference:
+
+        | Milestone | Issue title | Branch | Commit | Target date |
+        | --- | --- | --- | --- | --- |
+        | M1 - Foundation | `chore(foundation): set up Android project foundation` | `chore/m1-foundation` | `chore(foundation): set up Android project foundation` | `2026-06-07` |
+        | M2 - Core Architecture | `feat(core): add domain contracts and use cases` | `feat/m2-core-architecture` | `feat(core): add domain contracts and use cases` | `2026-06-14` |
+        | M3 - Data Stack | `feat(data): implement cache-first data stack` | `feat/m3-data-stack` | `feat(data): implement cache-first data stack` | `2026-06-21` |
+        | M4 - Compose Feature Flow | `feat(ui): build compose feature flow` | `feat/m4-compose-flow` | `feat(ui): build compose feature flow` | `2026-06-28` |
+        | M5 - Reliability And Offline | `feat(reliability): add offline and failure handling` | `feat/m5-reliability-offline` | `feat(reliability): add offline and failure handling` | `2026-07-05` |
+        | M6 - Testing And Portfolio Polish | `test(quality): add coverage and portfolio polish` | `test/m6-testing-polish` | `test(quality): add coverage and portfolio polish` | `2026-07-12` |
+
+        Checkbox rule:
+        - Use `[x]` only when the statement is already true or verified.
+        - Use `[ ]` when implementation, review, CI, testing, or validation is still required.
+        - Every unchecked item must include `Reason:`.
+        - Every checked item must include `Checked because:`.
+
+        Do not include company names, client names, private metrics, internal screenshots, secrets, production API contracts, or proprietary implementation details.
+
+  - type: input
+    id: issue_title
+    attributes:
+      label: 📝 Title
+      description: Enter the matching title from the milestone reference. Enter the same value in the GitHub issue title field.
+      placeholder: "chore(foundation): set up Android project foundation"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: 🎯 Milestone
+      description: Select the milestone and apply the same milestone in the GitHub sidebar.
+      options:
+        - Milestone 1 — Foundation
+        - Milestone 2 — Core Architecture
+        - Milestone 3 — Data Stack
+        - Milestone 4 — Compose Feature Flow
+        - Milestone 5 — Reliability And Offline
+        - Milestone 6 — Testing And Portfolio Polish
+    validations:
+      required: true
+
+  - type: dropdown
+    id: label
+    attributes:
+      label: 🏷️ Label
+      description: Select one allowed label and apply the same label in the GitHub sidebar.
+      options:
+        - enhancement
+        - documentation
+        - bug
+        - duplicate
+        - good first issue
+        - help wanted
+        - invalid
+        - question
+        - wontfix
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: Match the GitHub Project custom field when available.
+      options:
+        - P1 - Required for milestone completion
+        - P2 - Important but not blocking
+        - P3 - Optional improvement
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Effort
+      description: Match the GitHub Project custom field when available.
+      options:
+        - Small
+        - Medium
+        - Large
+    validations:
+      required: true
+
+  - type: input
+    id: start_date
+    attributes:
+      label: Start date
+      description: Use ISO date format and match the GitHub Project custom field when available.
+      placeholder: "2026-06-01"
+    validations:
+      required: true
+
+  - type: input
+    id: target_date
+    attributes:
+      label: Target date
+      description: Use ISO date format and match the GitHub Project custom field when available.
+      placeholder: "2026-06-07"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Match the GitHub Project status field.
+      options:
+        - Todo
+        - In progress
+        - Ready for review
+        - Blocked
+        - Done
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 📌 Problem
+      description: State the technical gap this issue closes.
+      placeholder: "The repository needs a reproducible Android build foundation before modular architecture, feature delivery, offline data flow, and test strategy are introduced."
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 🎯 Goal
+      description: State the measurable outcome.
+      placeholder: "Set up a buildable Android repository with Gradle wrapper, Java 17, Kotlin configured through Gradle, centralized dependency management, formatting enforcement, CI validation, Dependabot, repository governance files, security policy, and architecture decision tracking."
+    validations:
+      required: true
+
+  - type: textarea
+    id: included_scope
+    attributes:
+      label: 📂 Included Scope
+      description: Use checklist items. Unchecked items require `Reason:` and checked items require `Checked because:`.
+      placeholder: |
+        - [ ] Create Android project skeleton. Reason: project foundation must be initialized with a buildable baseline.
+        - [ ] Add Gradle wrapper files. Reason: reproducible builds require committed wrapper files.
+        - [ ] Configure Java 17 toolchain. Reason: build execution must use an explicit Java version.
+    validations:
+      required: true
+
+  - type: textarea
+    id: excluded_scope
+    attributes:
+      label: 🚫 Excluded Scope
+      description: List work intentionally excluded from this issue.
+      placeholder: |
+        - Feature implementation.
+        - Room database implementation.
+        - Retrofit API implementation.
+        - Production API integration.
+        - Company code, client names, private metrics, internal screenshots, secrets, production API contracts, or proprietary implementation details.
+    validations:
+      required: true
+
+  - type: textarea
+    id: architecture_requirements
+    attributes:
+      label: 🏛️ Architecture Requirements
+      description: Use checklist items for dependency direction, build governance, state ownership, data boundaries, and documentation rules.
+      placeholder: |
+        - [x] Use fictional project scope only. Checked because the approved domain is `Release Readiness Lab`.
+        - [x] Do not disclose company, client, private metrics, or proprietary implementation details. Checked because the repository policy excludes private work.
+        - [ ] Keep build configuration centralized. Reason: dependency, plugin, SDK, and app identity configuration must be verified before merge.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: ✅ Acceptance Criteria
+      description: Use measurable completion checks. Unchecked items require `Reason:` and checked items require `Checked because:`.
+      placeholder: |
+        - [ ] Repository builds locally. Reason: build must be verified after implementation.
+        - [ ] Required tests pass. Reason: test execution must be verified after implementation.
+        - [ ] CI passes. Reason: remote validation must be verified after push.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk_and_mitigation
+    attributes:
+      label: ⚠️ Risk and Mitigation
+      description: Pair each risk with a concrete mitigation.
+      placeholder: |
+        Risk: scope may expand beyond the approved milestone.
+        Mitigation: keep the issue limited to the selected milestone and move unrelated work to a separate issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation_notes
+    attributes:
+      label: 🛠️ Implementation Notes
+      description: Include implementation constraints, validation commands, and repository policy notes.
+      placeholder: |
+        Keep implementation aligned with the selected milestone.
+
+        Keep all project data, examples, screenshots, and documentation fictional.
+    validations:
+      required: true

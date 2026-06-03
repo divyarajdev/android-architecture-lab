@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.ArchitectureLab" parent="android:style/Theme.Material.Light.NoActionBar" />
+</resources>

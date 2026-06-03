@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Architecture Lab</string>
+    <string name="release_readiness_lab_title">Release Readiness Lab</string>
+    <string name="foundation_status_label">M1 foundation baseline</string>
+</resources>
