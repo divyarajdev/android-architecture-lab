@@ -36,55 +36,53 @@ class EvaluateReleaseReadinessUseCase {
         }
     }
 
-    private fun buildBlockingReasons(candidate: ReleaseCandidate): List<ReadinessReason> =
-        buildList {
-            if (candidate.status == ReleaseStatus.BLOCKED) {
-                add(ReadinessReason.ReleaseCandidateBlocked)
-            }
-
-            candidate.qualityGates
-                .filter { qualityGate ->
-                    qualityGate.isRequired && qualityGate.status == QualityGateStatus.FAILED
-                }.forEach { qualityGate ->
-                    add(ReadinessReason.RequiredQualityGateFailed(qualityGate.name))
-                }
-
-            candidate.moduleHealth
-                .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.BLOCKED }
-                .forEach { moduleHealth ->
-                    add(ReadinessReason.ModuleBlocked(moduleHealth.moduleName))
-                }
+    private fun buildBlockingReasons(candidate: ReleaseCandidate): List<ReadinessReason> = buildList {
+        if (candidate.status == ReleaseStatus.BLOCKED) {
+            add(ReadinessReason.ReleaseCandidateBlocked)
         }
 
-    private fun buildAttentionReasons(candidate: ReleaseCandidate): List<ReadinessReason> =
-        buildList {
-            if (candidate.qualityGates.isEmpty()) {
-                add(ReadinessReason.QualityGateEvidenceMissing)
+        candidate.qualityGates
+            .filter { qualityGate ->
+                qualityGate.isRequired && qualityGate.status == QualityGateStatus.FAILED
+            }.forEach { qualityGate ->
+                add(ReadinessReason.RequiredQualityGateFailed(qualityGate.name))
             }
 
-            candidate.qualityGates
-                .filter { qualityGate -> qualityGate.status == QualityGateStatus.WARNING }
-                .forEach { qualityGate ->
-                    add(ReadinessReason.QualityGateWarning(qualityGate.name))
-                }
+        candidate.moduleHealth
+            .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.BLOCKED }
+            .forEach { moduleHealth ->
+                add(ReadinessReason.ModuleBlocked(moduleHealth.moduleName))
+            }
+    }
 
-            candidate.qualityGates
-                .filter { qualityGate ->
-                    qualityGate.isRequired && qualityGate.status == QualityGateStatus.NOT_RUN
-                }.forEach { qualityGate ->
-                    add(ReadinessReason.RequiredQualityGateNotRun(qualityGate.name))
-                }
-
-            candidate.moduleHealth
-                .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.DEGRADED }
-                .forEach { moduleHealth ->
-                    add(ReadinessReason.ModuleDegraded(moduleHealth.moduleName))
-                }
-
-            candidate.moduleHealth
-                .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.NOT_EVALUATED }
-                .forEach { moduleHealth ->
-                    add(ReadinessReason.ModuleNotEvaluated(moduleHealth.moduleName))
-                }
+    private fun buildAttentionReasons(candidate: ReleaseCandidate): List<ReadinessReason> = buildList {
+        if (candidate.qualityGates.isEmpty()) {
+            add(ReadinessReason.QualityGateEvidenceMissing)
         }
+
+        candidate.qualityGates
+            .filter { qualityGate -> qualityGate.status == QualityGateStatus.WARNING }
+            .forEach { qualityGate ->
+                add(ReadinessReason.QualityGateWarning(qualityGate.name))
+            }
+
+        candidate.qualityGates
+            .filter { qualityGate ->
+                qualityGate.isRequired && qualityGate.status == QualityGateStatus.NOT_RUN
+            }.forEach { qualityGate ->
+                add(ReadinessReason.RequiredQualityGateNotRun(qualityGate.name))
+            }
+
+        candidate.moduleHealth
+            .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.DEGRADED }
+            .forEach { moduleHealth ->
+                add(ReadinessReason.ModuleDegraded(moduleHealth.moduleName))
+            }
+
+        candidate.moduleHealth
+            .filter { moduleHealth -> moduleHealth.status == ModuleHealthStatus.NOT_EVALUATED }
+            .forEach { moduleHealth ->
+                add(ReadinessReason.ModuleNotEvaluated(moduleHealth.moduleName))
+            }
+    }
 }

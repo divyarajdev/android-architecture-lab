@@ -37,10 +37,8 @@ class ReleaseCandidateUseCaseTest {
     private class FakeReleaseCandidateRepository(
         private val releaseCandidates: List<ReleaseCandidate>,
     ) : ReleaseCandidateRepository {
-        override fun observeReleaseCandidates(): Flow<List<ReleaseCandidate>> =
-            flowOf(releaseCandidates)
+        override fun observeReleaseCandidates(): Flow<List<ReleaseCandidate>> = flowOf(releaseCandidates)
 
-        override suspend fun getReleaseCandidate(id: ReleaseCandidateId): ReleaseCandidate? =
-            releaseCandidates.firstOrNull { releaseCandidate -> releaseCandidate.id == id }
+        override suspend fun getReleaseCandidate(id: ReleaseCandidateId): ReleaseCandidate? = releaseCandidates.firstOrNull { releaseCandidate -> releaseCandidate.id == id }
     }
 }

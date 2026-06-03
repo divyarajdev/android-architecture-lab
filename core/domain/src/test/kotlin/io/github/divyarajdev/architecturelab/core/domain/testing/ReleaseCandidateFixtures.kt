@@ -45,8 +45,7 @@ object ReleaseCandidateFixtures {
         isRequired = isRequired,
     )
 
-    fun healthyModule(moduleName: String = APP_MODULE_NAME): ModuleHealth =
-        moduleHealth(moduleName, ModuleHealthStatus.HEALTHY)
+    fun healthyModule(moduleName: String = APP_MODULE_NAME): ModuleHealth = moduleHealth(moduleName, ModuleHealthStatus.HEALTHY)
 
     fun moduleHealth(
         moduleName: String,

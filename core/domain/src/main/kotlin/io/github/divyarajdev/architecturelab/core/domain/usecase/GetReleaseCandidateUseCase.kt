@@ -18,6 +18,5 @@ class GetReleaseCandidateUseCase(
      * @param id release candidate identifier.
      * @return matching release candidate, or null when the candidate does not exist.
      */
-    suspend operator fun invoke(id: ReleaseCandidateId): ReleaseCandidate? =
-        repository.getReleaseCandidate(id)
+    suspend operator fun invoke(id: ReleaseCandidateId): ReleaseCandidate? = repository.getReleaseCandidate(id)
 }
