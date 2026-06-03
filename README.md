@@ -1,11 +1,15 @@
 # android-architecture-lab
 
-Android reference project for a reproducible Kotlin and Jetpack Compose foundation, centralized
-dependency governance, CI validation, ADR tracking, and milestone-based architecture delivery.
+Android reference project for Kotlin, Jetpack Compose, reproducible Gradle builds, centralized
+dependency governance, CI validation, ADR tracking, and milestone-based architecture decisions.
 
 ## Current Status
 
-M1 - Foundation is in progress.
+M1 - Foundation is complete: build tooling, repository governance, CI validation, Dependabot,
+and ADR tracking are in place.
+
+M2 - Core Architecture is next: module boundaries, domain contracts, repository interfaces, and
+use-case ownership.
 
 ## Repository Scope
 
@@ -14,8 +18,8 @@ This repository uses a fictional Release Readiness Lab domain.
 It contains no company code, client names, private metrics, internal screenshots, secrets,
 production API contracts, or proprietary implementation details.
 
-Repository content must remain limited to public portfolio work, fictional data, and reproducible
-Android implementation examples.
+Repository content is limited to public portfolio work, fictional data, and reproducible Android
+implementation examples.
 
 ## Requirements
 
@@ -40,10 +44,10 @@ cd android-architecture-lab
 - Centralized dependency management with Gradle Version Catalog
 - Centralized app identity and version metadata with Gradle properties
 - Formatting enforcement with Spotless and ktlint
-- GitHub Actions validation workflow
+- GitHub Actions validation for build, formatting, tests, and lint
 - Dependabot for Gradle and GitHub Actions
 - Architecture decision tracking with ADRs
-- Security, contribution, and release governance
+- Security, contribution, review, and release governance
 - Milestone-based release traceability
 
 ## Repository Structure
@@ -58,14 +62,14 @@ cd android-architecture-lab
 
 ## Planned Architecture Direction
 
-- Clear UI, domain, and data layer ownership
+- Explicit UI, domain, and data layer ownership
 - Feature modules isolated behind stable core contracts
 - ViewModel-owned screen state exposed as immutable `StateFlow`
 - Lifecycle-aware state collection in Jetpack Compose
 - UI events handled through unidirectional data flow
 - Business rules kept outside composables
 - Domain use cases added where reuse or business complexity justifies them
-- Data access exposed through repositories
+- Data access exposed through repository contracts
 - Room, Retrofit, OkHttp, and DataStore kept behind the data layer
 - Cache-first data flow for offline and stale-data handling
 - Unit, UI, lint, and CI checks used as quality gates
