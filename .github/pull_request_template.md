@@ -94,8 +94,7 @@ Explain why this change is required for the selected milestone.
 - [ ] `./gradlew spotlessCheck` passes. Reason: formatting enforcement must be verified before
   merge.
 - [ ] `./gradlew assembleDebug` passes. Reason: debug build must be verified before merge.
-- [ ] `./gradlew testDebugUnitTest` passes. Reason: unit test execution must be verified before
-  merge.
+- [ ] `./gradlew test` passes. Reason: unit test execution must be verified before merge.
 - [ ] `./gradlew lintDebug` passes. Reason: Android lint must be verified before merge.
 - [ ] GitHub Actions passes. Reason: remote validation must be verified before merge.
 

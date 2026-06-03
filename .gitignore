@@ -1,8 +1,11 @@
 # Gradle
 .gradle/
 .gradle-codex/
+.kotlin/
 build/
 **/build/
+**/.gradle/
+**/.kotlin/
 
 # Local Android configuration
 local.properties

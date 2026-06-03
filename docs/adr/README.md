@@ -6,3 +6,4 @@ testing strategy, release behavior, or security posture.
 ## Records
 
 - [0001 - Android project foundation](0001-android-project-foundation.md)
+- [0002 - Core architecture boundaries](0002-core-architecture-boundaries.md)

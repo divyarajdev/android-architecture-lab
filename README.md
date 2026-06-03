@@ -23,7 +23,7 @@ implementation examples.
 
 ## Requirements
 
-- Android Studio stable release with Android Gradle Plugin 8.13.x support
+- Android Studio stable release with Android Gradle Plugin 9.x support
 - JDK 17 toolchain
 - Android SDK 36 installed
 - Gradle wrapper from this repository
@@ -76,13 +76,13 @@ cd android-architecture-lab
 
 ## Quality Gates
 
-| Check             | Command                       |
-|-------------------|-------------------------------|
-| Clean build state | `./gradlew clean`             |
-| Formatting        | `./gradlew spotlessCheck`     |
-| Debug build       | `./gradlew assembleDebug`     |
-| Unit tests        | `./gradlew testDebugUnitTest` |
-| Android lint      | `./gradlew lintDebug`         |
+| Check             | Command                   |
+|-------------------|---------------------------|
+| Clean build state | `./gradlew clean`         |
+| Formatting        | `./gradlew spotlessCheck` |
+| Debug build       | `./gradlew assembleDebug` |
+| Unit tests        | `./gradlew test`          |
+| Android lint      | `./gradlew lintDebug`     |
 
 ## Project Governance
 
