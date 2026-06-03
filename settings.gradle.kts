@@ -16,6 +16,8 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
+includeBuild("build-logic")
+
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -29,3 +31,6 @@ dependencyResolutionManagement {
 rootProject.name = "android-architecture-lab"
 
 include(":app")
+include(":core:common")
+include(":core:model")
+include(":core:domain")

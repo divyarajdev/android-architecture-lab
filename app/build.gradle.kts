@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -11,7 +10,8 @@ val projectNamespace: String = providers.gradleProperty("app.projectNamespace").
 val appNamespace: String = "$namespaceRoot.$projectNamespace"
 val appVersionCode: Int = providers.gradleProperty("app.versionCode").get().toInt()
 val appVersionName: String = providers.gradleProperty("app.versionName").get()
-val appTestInstrumentationRunner: String = providers.gradleProperty("app.testInstrumentationRunner").get()
+val appTestInstrumentationRunner: String =
+    providers.gradleProperty("app.testInstrumentationRunner").get()
 val javaVersionName: String = libs.versions.java.get()
 val javaToolchainVersion: Int = javaVersionName.toInt()
 val javaVersion: JavaVersion = JavaVersion.toVersion(javaToolchainVersion)
@@ -62,17 +62,17 @@ android {
         targetCompatibility = javaVersion
     }
 
-    kotlin {
-        jvmToolchain(javaToolchainVersion)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.fromTarget(javaVersionName))
-        }
-    }
-
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+kotlin {
+    jvmToolchain(javaToolchainVersion)
+    compilerOptions {
+        jvmTarget.set(JvmTarget.fromTarget(javaVersionName))
     }
 }
 
