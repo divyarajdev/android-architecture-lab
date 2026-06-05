@@ -11,8 +11,12 @@ and ADR tracking are in place.
 M2 - Core Architecture is complete: framework-independent core modules, domain contracts,
 repository interfaces, use cases, architecture boundary tests, and ADR documentation are in place.
 
-M3 - Data Stack is in progress: repository implementation, local cache, remote source, and
-data-layer boundary enforcement.
+M3 - Data Stack is complete: Room-backed local source of truth, fake remote source, cache-first
+repository implementation, data mapping, refresh failure handling, tests, and ADR documentation are
+in place.
+
+M4 - Compose Feature Flow is planned: dashboard, release detail, settings, and lifecycle-aware UI
+state.
 
 ## Repository Scope
 
@@ -142,7 +146,7 @@ flowchart LR
 |-----------------------------------|---------------------------------------------------------|------------|
 | M1 - Foundation                   | Build tooling, governance, CI, Dependabot, ADR baseline | 2026-06-07 |
 | M2 - Core Architecture            | Core modules, domain contracts, use cases               | 2026-06-14 |
-| M3 - Data Stack                   | Repository implementation, local cache, remote source   | 2026-06-21 |
+| M3 - Data Stack                   | Cache-first repository, Room cache, fake remote source  | 2026-06-21 |
 | M4 - Compose Feature Flow         | Dashboard, detail, settings, lifecycle-aware UI state   | 2026-06-28 |
 | M5 - Reliability And Offline      | Offline state, stale data, retry, failure handling      | 2026-07-05 |
 | M6 - Testing And Portfolio Polish | Tests, documentation, screenshots, release readiness    | 2026-07-12 |
