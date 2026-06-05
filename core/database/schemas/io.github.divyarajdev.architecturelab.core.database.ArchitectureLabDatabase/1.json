@@ -1,0 +1,171 @@
+{
+    "formatVersion": 1,
+    "database": {
+        "version": 1,
+        "identityHash": "71055bed6b412597814ea07369d9d245",
+        "entities": [
+            {
+                "tableName": "release_candidates",
+                "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `version_name` TEXT NOT NULL, `status` TEXT NOT NULL, `updated_at` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+                "fields": [
+                    {
+                        "fieldPath": "id",
+                        "columnName": "id",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "versionName",
+                        "columnName": "version_name",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "status",
+                        "columnName": "status",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "updatedAt",
+                        "columnName": "updated_at",
+                        "affinity": "INTEGER",
+                        "notNull": true
+                    }
+                ],
+                "primaryKey": {
+                    "autoGenerate": false,
+                    "columnNames": [
+                        "id"
+                    ]
+                }
+            },
+            {
+                "tableName": "quality_gates",
+                "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`release_candidate_id` TEXT NOT NULL, `name` TEXT NOT NULL, `status` TEXT NOT NULL, `is_required` INTEGER NOT NULL, PRIMARY KEY(`release_candidate_id`, `name`), FOREIGN KEY(`release_candidate_id`) REFERENCES `release_candidates`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                "fields": [
+                    {
+                        "fieldPath": "releaseCandidateId",
+                        "columnName": "release_candidate_id",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "name",
+                        "columnName": "name",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "status",
+                        "columnName": "status",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "isRequired",
+                        "columnName": "is_required",
+                        "affinity": "INTEGER",
+                        "notNull": true
+                    }
+                ],
+                "primaryKey": {
+                    "autoGenerate": false,
+                    "columnNames": [
+                        "release_candidate_id",
+                        "name"
+                    ]
+                },
+                "indices": [
+                    {
+                        "name": "index_quality_gates_release_candidate_id",
+                        "unique": false,
+                        "columnNames": [
+                            "release_candidate_id"
+                        ],
+                        "orders": [],
+                        "createSql": "CREATE INDEX IF NOT EXISTS `index_quality_gates_release_candidate_id` ON `${TABLE_NAME}` (`release_candidate_id`)"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "table": "release_candidates",
+                        "onDelete": "CASCADE",
+                        "onUpdate": "NO ACTION",
+                        "columns": [
+                            "release_candidate_id"
+                        ],
+                        "referencedColumns": [
+                            "id"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tableName": "module_health",
+                "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`release_candidate_id` TEXT NOT NULL, `module_name` TEXT NOT NULL, `status` TEXT NOT NULL, `open_defect_count` INTEGER NOT NULL, PRIMARY KEY(`release_candidate_id`, `module_name`), FOREIGN KEY(`release_candidate_id`) REFERENCES `release_candidates`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+                "fields": [
+                    {
+                        "fieldPath": "releaseCandidateId",
+                        "columnName": "release_candidate_id",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "moduleName",
+                        "columnName": "module_name",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "status",
+                        "columnName": "status",
+                        "affinity": "TEXT",
+                        "notNull": true
+                    },
+                    {
+                        "fieldPath": "openDefectCount",
+                        "columnName": "open_defect_count",
+                        "affinity": "INTEGER",
+                        "notNull": true
+                    }
+                ],
+                "primaryKey": {
+                    "autoGenerate": false,
+                    "columnNames": [
+                        "release_candidate_id",
+                        "module_name"
+                    ]
+                },
+                "indices": [
+                    {
+                        "name": "index_module_health_release_candidate_id",
+                        "unique": false,
+                        "columnNames": [
+                            "release_candidate_id"
+                        ],
+                        "orders": [],
+                        "createSql": "CREATE INDEX IF NOT EXISTS `index_module_health_release_candidate_id` ON `${TABLE_NAME}` (`release_candidate_id`)"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "table": "release_candidates",
+                        "onDelete": "CASCADE",
+                        "onUpdate": "NO ACTION",
+                        "columns": [
+                            "release_candidate_id"
+                        ],
+                        "referencedColumns": [
+                            "id"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "setupQueries": [
+            "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+            "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '71055bed6b412597814ea07369d9d245')"
+        ]
+    }
+}

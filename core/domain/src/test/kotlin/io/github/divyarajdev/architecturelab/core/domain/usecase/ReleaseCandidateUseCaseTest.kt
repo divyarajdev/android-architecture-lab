@@ -1,5 +1,6 @@
 package io.github.divyarajdev.architecturelab.core.domain.usecase
 
+import io.github.divyarajdev.architecturelab.core.domain.repository.ReleaseCandidateRefreshResult
 import io.github.divyarajdev.architecturelab.core.domain.repository.ReleaseCandidateRepository
 import io.github.divyarajdev.architecturelab.core.domain.testing.ReleaseCandidateFixtures.DOMAIN_MODULE_NAME
 import io.github.divyarajdev.architecturelab.core.domain.testing.ReleaseCandidateFixtures.healthyModule
@@ -34,11 +35,20 @@ class ReleaseCandidateUseCaseTest {
         assertEquals(releaseCandidate, result)
     }
 
+    @Test
+    fun `refresh use case returns repository refresh result`() = runBlocking {
+        val result = RefreshReleaseCandidatesUseCase(repository)()
+
+        assertEquals(ReleaseCandidateRefreshResult.Success, result)
+    }
+
     private class FakeReleaseCandidateRepository(
         private val releaseCandidates: List<ReleaseCandidate>,
     ) : ReleaseCandidateRepository {
         override fun observeReleaseCandidates(): Flow<List<ReleaseCandidate>> = flowOf(releaseCandidates)
 
         override suspend fun getReleaseCandidate(id: ReleaseCandidateId): ReleaseCandidate? = releaseCandidates.firstOrNull { releaseCandidate -> releaseCandidate.id == id }
+
+        override suspend fun refreshReleaseCandidates(): ReleaseCandidateRefreshResult = ReleaseCandidateRefreshResult.Success
     }
 }
