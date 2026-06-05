@@ -7,3 +7,4 @@ testing strategy, release behavior, or security posture.
 
 - [0001 - Android project foundation](0001-android-project-foundation.md)
 - [0002 - Core architecture boundaries](0002-core-architecture-boundaries.md)
+- [0003 - Cache-first data flow](0003-cache-first-data-flow.md)

@@ -26,4 +26,11 @@ interface ReleaseCandidateRepository {
      * @return matching release candidate, or null when no candidate exists for [id].
      */
     suspend fun getReleaseCandidate(id: ReleaseCandidateId): ReleaseCandidate?
+
+    /**
+     * Refreshes release candidates from the configured data source.
+     *
+     * @return typed refresh outcome that does not expose transport, database, or exception types.
+     */
+    suspend fun refreshReleaseCandidates(): ReleaseCandidateRefreshResult
 }

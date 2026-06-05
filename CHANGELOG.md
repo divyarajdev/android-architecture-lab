@@ -6,7 +6,7 @@ Repository changes are tracked by milestone and release tag.
 
 ### M3 - Data Stack
 
-- Planned: repository implementation, local cache, remote source, and data-layer boundary
+- In progress: repository implementation, local cache, remote source, and data-layer boundary
   enforcement.
 
 ## v0.2.0-core-architecture

@@ -11,8 +11,8 @@ and ADR tracking are in place.
 M2 - Core Architecture is complete: framework-independent core modules, domain contracts,
 repository interfaces, use cases, architecture boundary tests, and ADR documentation are in place.
 
-M3 - Data Stack is planned: repository implementation, local cache, remote source, and data-layer
-boundary enforcement.
+M3 - Data Stack is in progress: repository implementation, local cache, remote source, and
+data-layer boundary enforcement.
 
 ## Repository Scope
 
@@ -58,10 +58,51 @@ cd android-architecture-lab
 | Path              | Responsibility                                                                        |
 |-------------------|---------------------------------------------------------------------------------------|
 | `.github/`        | GitHub Actions, Dependabot, CODEOWNERS, issue form, and pull request template         |
-| `app/`            | Minimal Android application module for M1 build validation                            |
+| `app/`            | Minimal Android application module for build validation                               |
+| `build-logic/`    | Centralized Gradle convention plugins                                                 |
+| `core/`           | Core model, domain, data, database, network, and shared primitives                    |
 | `docs/adr/`       | Architecture Decision Records for build, module, data, testing, and release decisions |
 | `gradle/`         | Version Catalog and Gradle wrapper configuration                                      |
 | Root Gradle files | Repository-level build configuration, formatting, and Android project settings        |
+
+## Data Flow
+
+The current M3 scope implements the data stack. Feature UI is planned for M4.
+
+```mermaid
+flowchart LR
+    subgraph Domain["core:domain"]
+        UseCases["Use cases"]
+        RepositoryContract["ReleaseCandidateRepository"]
+    end
+
+    subgraph Data["core:data"]
+        RepositoryImplementation["OfflineFirstReleaseCandidateRepository"]
+        Mappers["DTO / Entity / Domain mappers"]
+    end
+
+    subgraph Database["core:database"]
+        LocalSource["Local source of truth"]
+        RoomDao["Room DAO"]
+    end
+
+    subgraph Network["core:network"]
+        RemoteSource["Fake remote source"]
+        Dtos["Network DTOs"]
+    end
+
+    UseCases --> RepositoryContract
+    RepositoryContract --> RepositoryImplementation
+    RepositoryImplementation --> LocalSource
+    LocalSource --> RoomDao
+    RoomDao --> LocalSource
+    LocalSource --> RepositoryImplementation
+    RepositoryImplementation --> RemoteSource
+    RemoteSource --> Dtos
+    Dtos --> Mappers
+    Mappers --> LocalSource
+    RepositoryImplementation --> RepositoryContract
+```
 
 ## Planned Architecture Direction
 
