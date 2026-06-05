@@ -4,10 +4,23 @@ Repository changes are tracked by milestone and release tag.
 
 ## Unreleased
 
+### M4 - Compose Feature Flow
+
+- Planned: dashboard, release detail, settings, and lifecycle-aware UI state.
+
+## v0.3.0-data-stack
+
 ### M3 - Data Stack
 
-- In progress: repository implementation, local cache, remote source, and data-layer boundary
-  enforcement.
+- Data, database, and network modules added.
+- Android library and Room Gradle conventions centralized in build logic.
+- Room-backed local source of truth added with committed schema history.
+- Fake remote source added with isolated DTO models.
+- Cache-first repository implementation added behind the domain contract.
+- DTO, entity, and domain mapping added inside the data layer.
+- Typed refresh result added to the domain repository contract.
+- Mapper, repository, refresh use case, and boundary tests added.
+- ADR and README data-flow documentation added for source-of-truth behavior.
 
 ## v0.2.0-core-architecture
 
