@@ -2,7 +2,7 @@
 agp = "9.1.1"
 androidxActivity = "1.13.0"
 androidxComposeBom = "2026.05.01"
-androidxCore = "1.18.0"
+androidxCore = "1.19.0"
 androidxLifecycle = "2.10.0"
 androidxRoom = "2.8.4"
 compileSdk = "36"
